@@ -39,7 +39,7 @@ export default {};
 <style lang="scss">
 
 .meeting {
-	padding: 200px 0px;
+	padding-bottom: 200px;
 	display: flex;
 
 		&__column {

@@ -3,9 +3,7 @@
     <div class="card__number">{{ number }}</div>
     <p class="card__title">{{ title }}</p>
     <ul class="card__list">
-      <li>
-        {{ list.title }}
-      </li>
+        <slot></slot>
     </ul>
   </div>
 </template>
@@ -15,6 +13,14 @@
 //card list разное колво li
 //card title
 export default {
+	data() {
+    return {
+			items: [
+				{ message: '— Брифинг' },
+      	{ message: '— Общение с заказчиком' }
+			]
+		}
+  },
   props: {
     title: {
       type: String,
@@ -39,7 +45,7 @@ export default {
   flex: 0 1 420px;
   border: 1px solid $blue;
   position: relative;
-  padding: 30px 70px 30px 40px;
+  padding: 30px 70px 20px 40px;
   margin-bottom: 30px;
   margin-right: 30px;
 
