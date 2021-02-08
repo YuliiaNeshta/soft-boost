@@ -6,6 +6,8 @@
           Почему мы?
         </h2>
         <img src="@/assets/images/checkmark.svg" alt="" />
+				<div class="pink-spot"></div>
+				<div class="blue-spot"></div>
       </div>
       <div class="choose__column advantages">
         <div class="advantages__item">
@@ -98,6 +100,24 @@ export default {};
 			letter-spacing: 0.015em;
 			font-weight: 300;
 		}
+}
+
+.pink-spot{
+	width: 124px;
+	height: 124px;
+	background: #DD4DF5;
+	filter: blur(55px);
+	margin: 10px 0px 0px 188px;
+	opacity: 0.5;
+}
+
+.blue-spot{
+	width: 124px;
+	height: 124px;
+	background: #6764FF;
+	filter: blur(55px);
+	margin-left: 60px;
+	opacity: 0.5;
 }
 
 </style>

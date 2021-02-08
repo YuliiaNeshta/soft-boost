@@ -1,17 +1,17 @@
 <template>
   <div class="banner">
     <div class="container">
-			<h3 class="banner__title">
-          Сделаем крутой продукт <span>вместе</span>
-      </h3>
       <div class="banner__wrap">
-        <div class="banner__column">
-          <base-form />
+        <div class="banner__column banner__form">
+          <h3 class="banner__title">
+            Сделаем крутой продукт <span>вместе</span>
+          </h3>
+          <base-form class="banner__form-wrap" />
         </div>
-        <div class="banner__column">
-          <!-- <div class="banner__img">
-            <img src="@/assets/images/logo-blue.svg" alt="Soft Boost" />
-          </div> -->
+        <div class="banner__column banner__column--img">
+          <div class="banner__img">
+            <img src="@/assets/images/logo-blue.png" alt="Soft Boost" />
+          </div>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ export default {
 <style lang="scss">
 .banner {
   background-color: $blue;
-	margin-bottom: 200px;
+  margin-bottom: 200px;
   padding: 60px 0px;
   &__wrap {
     display: flex;
@@ -43,9 +43,24 @@ export default {
       color: $yellow;
     }
   }
+  &__form {
+    flex: 0 0 auto;
+    width: 58.3333333333%;
+		&-wrap{
+			margin-top: 70px;
+		}
+  }
+  &__img {
+		margin-top: -9px;
+    position: relative;
+  }
 
   &__column {
-    width: 50%;
+    &--img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 </style>

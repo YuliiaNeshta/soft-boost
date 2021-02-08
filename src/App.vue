@@ -7,6 +7,7 @@
 		<page-banner/>
 		<choose-us/>
 		<our-process/>
+		<page-footer/>
   </div>
 </template>
 
@@ -17,10 +18,11 @@ import OurMeeting from './components/OurMeeting';
 import OurProcess from './components/OurProcess';
 import OurSpecialization from './components/OurSpecialization';
 import PageBanner from './components/PageBanner';
+import PageFooter from './components/PageFooter';
 import baseHeader from './components/regular/baseHeader';
 
 export default {
-  components: { baseHeader, HomePage, OurMeeting, OurProcess, ChooseUs, OurSpecialization, PageBanner },
+  components: { baseHeader, HomePage, OurMeeting, OurProcess, ChooseUs, OurSpecialization, PageBanner, PageFooter },
   name: "App",
 };
 </script>

@@ -25,7 +25,6 @@ export default {
 
 <style lang="scss">
 	.form {
-		margin-top: 70px;
 
 		&__row {
 			display: flex;
@@ -45,9 +44,13 @@ export default {
 			border-bottom: 1px solid #FFFFFF;
 			padding: 5px 0px;
 			min-width: 240px;
+			font-size: 16px;
+			line-height: 20px;
 			&::placeholder{
 				font-weight: 300;
 				color: #fff;
+				font-size: 16px;
+				line-height: 20px;
 			}
 			&:focus{
 				outline: none;
