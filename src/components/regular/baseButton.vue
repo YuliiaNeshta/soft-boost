@@ -1,6 +1,6 @@
 <template>
 	<div class="button-wrap">
-		<button class="button">
+		<button class="button" @click="$emit('showModal')">
 			<slot>
 				{{title}}
 			</slot>

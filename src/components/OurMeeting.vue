@@ -3,30 +3,23 @@
     <div class="meeting">
       <div class="meeting__column">
         <h2 class="meeting__title title">
-          Давайте знакомиться
+          {{ $t("titleMeet")}}
         </h2>
-        <img src="@/assets/images/arrow.svg" alt="" />
+        <img class="meeting__img" src="@/assets/images/arrow.svg" alt="" />
       </div>
       <div class="meeting__column">
         <p class="meeting__text">
-          <strong>Мы - команда прогрессивных мечтателей</strong>, которые
-          вдохновляются современными стартапами и технологиями на рынке IT. Мы
-          интегрируем прогрессивные технологии в существующие бизнесы, создаем
-          некий диджитализированый бустер и апгрейд, который утоляет бизнес
-          потребность нашего клиента, а в последствии и его клиентов. Совместно
-          с командой разрабатываем инновационное для компаний решение переводя
-          существующие оффлайн процессы в онлайн. Так же помогаем стартапам в
-          реализации задуманной идеи.
+          <strong> {{ $t("meetStrong_1")}}</strong> {{ $t("meetText_1")}}
         </p>
-        <strong>Нашими особенностями являются:</strong>
+        <strong>{{ $t("meetStrong_2")}}</strong>
         <ol class="meeting__list">
-          <li>1. Френдли коммуникация с заказчиком</li>
-          <li>2. Полное выявление потребности</li>
-          <li>3. Завершаем проект только при 100% удовлетворении заказчика</li>
-          <li>4. Заводим отношения не на единоразовой основе, а на долгие-долгие периоды сотрудничества</li>
+          <li>{{ $t("meetTextList_1")}}</li>
+          <li>{{ $t("meetTextList_2")}}</li>
+          <li>{{ $t("meetTextList_3")}}</li>
+          <li>{{ $t("meetTextList_4")}}</li>
         </ol>
-        <p class="meeting__line">Так все же кто мы?</p>
-        <strong>Мы - твой турбо-ускоритель в диджитализации.</strong>
+        <p class="meeting__line">{{ $t("meetText_2")}}</p>
+        <strong>{{ $t("meetStrong_3")}}</strong>
       </div>
     </div>
   </div>
@@ -41,9 +34,21 @@ export default {};
 .meeting {
 	padding-bottom: 200px;
 	display: flex;
+	@include for-tablet{
+		flex-direction: column;
+		padding-bottom: 40px;
+	}
+	&__img{
+		width: 140px;
+		height: 102px;
+	}
 
 		&__column {
 			width: 50%;
+			@include for-tablet{
+				width: 100%;
+				margin-bottom: 100px;
+			}
 			img{
 				margin-top: 40px;
 			}
@@ -57,12 +62,6 @@ export default {};
 		&__text {
 			margin-bottom: 25px;
 			letter-spacing: 0.015em;
-		}
-
-		&__list {
-		}
-
-		&__line {
 		}
 }
 

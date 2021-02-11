@@ -1,53 +1,53 @@
 <template>
   <div class="container">
-    <div class="process">
+    <div class="process" id="process">
       <h2 class="process__title title">
-        А процесс?
+        {{ $t("titleProcess")}}
       </h2>
       <div class="process__cards">
-        <base-card-process title="Прототип" number="01">
+        <base-card-process :title="$t('cardTitle_1')" number="01">
           <li
             class="process__item"
             v-for="itemLi in listItems.prototype"
             :key="itemLi"
           >
-            — {{ itemLi }}
+            — {{ $t(itemLi)}}
           </li>
         </base-card-process>
-        <base-card-process title="Исследование" number="02">
+        <base-card-process :title="$t('cardTitle_2')" number="02">
           <li
             class="process__item"
             v-for="itemLi in listItems.study"
             :key="itemLi"
           >
-            — {{ itemLi }}
+            — {{ $t(itemLi)}}
           </li>
         </base-card-process>
       </div>
       <div class="process__cards process__cards--second-row">
-        <base-card-process title="Создание дизайна" number="03">
+        <base-card-process :title="$t('cardTitle_3')" number="03">
           <li
             class="process__item"
             v-for="itemLi in listItems.design"
             :key="itemLi"
           >
-            — {{ itemLi }}
+          	— {{ $t(itemLi)}}
           </li>
         </base-card-process>
-        <base-card-process title="Отзывчивость" number="04">
+        <base-card-process :title="$t('cardTitle_4')" number="04">
           <li
             class="process__item"
             v-for="itemLi in listItems.responsiveness"
             :key="itemLi"
           >
-            — {{ itemLi }}
+            — {{ $t(itemLi)}}
           </li>
         </base-card-process>
       </div>
       <div class="light-pink-spot"></div>
     </div>
     <h3 class="process__quote">
-      Никаких общих фраз, пустых обещаний и равнодушного отношения
+      {{ $t("quote")}}
     </h3>
   </div>
 </template>
@@ -56,20 +56,19 @@
 import baseCardProcess from "./regular/baseCardProcess";
 
 export default {
-  //у вас в объекте в объявлении props нету listItems
-  //А ещё тут же на стрелочке cardItem неизвестная переменная.
+
   components: { baseCardProcess },
   data() {
     return {
       listItems: {
-        prototype: ["Брифинг", "Общение с заказчиком", "Прототипирование"],
-        study: ["Поиск референсов", "Брейншторм", "Концепт"],
+        prototype: ["prototypeItem_1", "prototypeItem_2", "prototypeItem_3"],
+        study: ["researchItem_1", "researchItem_2", "researchItem_3"],
         design: [
-          "Подбор шрифтов",
-          "Подбор цветовой палитры",
-          "Создание креативного UI",
+          "designItem_1",
+          "designItem_2",
+          "designItem_3",
         ],
-        responsiveness: ["Версия для планшета", "Мобильная версия"],
+        responsiveness: ["adaptivItem_1", "adaptivItem_2"],
       },
     };
   },
@@ -81,10 +80,24 @@ export default {
   position: relative;
   &__title {
     margin-bottom: 100px;
+    @include for-tablet {
+      margin-bottom: 30px;
+    }
+		@include for-mobile{
+			margin-bottom: 0px;
+		}
   }
   &__cards {
     display: flex;
-    flex-wrap: wrap;
+    
+		@include for-min-desctop{
+			margin-right: -30px;
+		}
+		@include for-tablet{
+			flex-wrap: wrap;
+			margin-right: 0px;
+			margin-top: 75px;
+		}
   }
   &__item {
     margin-bottom: 10px;
@@ -96,6 +109,17 @@ export default {
     margin-left: 150px;
     position: relative;
     z-index: 2;
+		@include for-min-desctop{
+			justify-content: flex-start;
+			margin-left: 0px;
+		}
+    @include for-tablet {
+      justify-content: flex-start;
+      margin-left: 0px;
+    }
+		@include for-mobile{
+			margin-top: 0px;
+		}
   }
   &__quote {
     margin: 200px 0px;
@@ -104,6 +128,11 @@ export default {
     font-size: 40px;
     line-height: 49px;
     text-align: center;
+    @include for-tablet {
+      margin: 100px 0px 140px 0px;
+      font-size: 24px;
+      line-height: 29px;
+    }
   }
 }
 

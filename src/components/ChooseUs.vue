@@ -1,54 +1,55 @@
 <template>
   <div class="container">
-    <div class="choose">
-      <div class="choose__column">
+    <div class="choose" id="choose">
+      <div class="choose__column choose__column--title">
         <h2 class="choose__title title">
-          Почему мы?
+          {{$t("chooseTitle")}}
         </h2>
-        <img src="@/assets/images/checkmark.svg" alt="" />
-				<div class="pink-spot"></div>
-				<div class="blue-spot"></div>
+        <img class="choose__check" src="@/assets/images/checkmark.svg" alt="" />
+        <div class="pink-spot"></div>
+        <div class="blue-spot"></div>
       </div>
       <div class="choose__column advantages">
         <div class="advantages__item">
           <img src="@/assets/images/date.svg" alt="Точно в срок" />
           <div class="advantages__info">
-            <h4 class="advantages__title">Точно в срок</h4>
+            <h4 class="advantages__title">{{$t("chooseTitle_1")}}</h4>
             <p class="advantages__text">
-              Мы знаем, как умеют обещать "менеджеры", поэтому не перекладываем ответственность.
-              <strong>Все процессы контроллируем лично, и несем за них ответственность.</strong>
+              {{$t("chooseText_1")}}
+              <strong
+                >{{$t("chooseTextStrong_1")}}</strong
+              >
             </p>
           </div>
         </div>
         <div class="advantages__item">
           <img src="@/assets/images/message.svg" alt="Всегда на связи" />
           <div class="advantages__info">
-            <h4 class="advantages__title">Всегда на связи</h4>
+            <h4 class="advantages__title">{{$t("chooseTitle_2")}}</h4>
             <p class="advantages__text">
-              Это не просто слова, а реальные действия.
-              <strong>Вы — наш приоритет</strong>, поэтому все планы
-              подстраиваем так, чтобы удобно было Вам.
+              {{$t("chooseText_2")}}
+              <strong>{{$t("chooseTextStrong_2")}}</strong>, {{$t("chooseText_2_2")}}
             </p>
           </div>
         </div>
         <div class="advantages__item">
           <img src="@/assets/images/happy.svg" alt="Сотрудничество" />
           <div class="advantages__info">
-            <h4 class="advantages__title">Сотрудничество, которое порадует</h4>
+            <h4 class="advantages__title">{{$t("chooseTitle_3")}}</h4>
             <p class="advantages__text">
-              Ждете от сотрудничества такой отдачи, будто делаем проект для
-              себя? С нами вы получите больше, ведь главное — результат на 100%
-              и еще чуть чуть сверху.<strong> — результат на 100% и еще чуть чуть сверху.</strong>
+              {{$t("chooseText_3")}}<strong>
+                {{$t("chooseStrong")}}</strong
+              >
             </p>
           </div>
         </div>
         <div class="advantages__item">
           <img src="@/assets/images/flag.svg" alt="Ваши достижения" />
           <div class="advantages__info">
-            <h4 class="advantages__title">Ваши достижения — наша цель</h4>
+            <h4 class="advantages__title">{{$t("chooseTitle_4")}}</h4>
             <p class="advantages__text">
-              Наша цель — привести каждый проект к успеху, ведь
-              <strong>вместе с вами растем и развиваемся и мы!</strong>
+              {{$t("chooseText_4")}}
+              <strong>{{$t("chooseTextStrong_4")}}</strong>
             </p>
           </div>
         </div>
@@ -62,62 +63,94 @@ export default {};
 </script>
 
 <style lang="scss">
-
 .choose {
-	display: flex;
-		&__column {
-			width: 50%;
-		}
-
-		&__title {
-			margin-bottom: 40px;
-		}
+  display: flex;
+  @include for-tablet {
+    flex-direction: column;
+  }
+  &__column {
+    width: 50%;
+    &--title {
+      position: relative;
+      margin-bottom: 67px;
+    }
+    @include for-tablet {
+      width: 100%;
+    }
+  }
+	&__check{
+		position: relative;
+		z-index: 2;
+	}
+  &__title {
+    margin-bottom: 40px;
+		
+  }
 }
 
 .advantages {
+  &__item {
+    display: flex;
+    margin-bottom: 50px;
+    align-items: flex-start;
+    img {
+      margin-top: -7px;
+    }
+  }
 
-		&__item {
-			display: flex;
-			margin-bottom: 50px;
-			align-items: flex-start;
-			img{
-				margin-top: -7px;
-			}
+  &__info {
+    margin-left: 35px;
+		@include for-tablet{
+			margin-left: 25px;
 		}
+  }
 
-		&__info {
-			margin-left: 35px;
-		}
+  &__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 10px;
+    @include for-tablet {
+      font-size: 24px;
+      line-height: 29px;
+    }
+  }
 
-		&__title {
-			font-weight: 700;
-			font-size: 24px;
-			line-height: 29px;
-			margin-bottom: 10px;
-		}
-
-		&__text {
-			letter-spacing: 0.015em;
-			font-weight: 300;
-		}
+  &__text {
+    letter-spacing: 0.015em;
+    font-weight: 300;
+  }
 }
 
-.pink-spot{
-	width: 124px;
-	height: 124px;
-	background: #DD4DF5;
-	filter: blur(55px);
-	margin: 10px 0px 0px 188px;
-	opacity: 0.5;
+.pink-spot {
+  width: 124px;
+  height: 124px;
+  background: #dd4df5;
+  filter: blur(55px);
+  margin: 10px 0px 0px 188px;
+  opacity: 0.5;
+  @include for-tablet {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+		z-index: 1;
+		opacity: 0.3;
+  }
 }
 
-.blue-spot{
-	width: 124px;
-	height: 124px;
-	background: #6764FF;
-	filter: blur(55px);
-	margin-left: 60px;
-	opacity: 0.5;
+.blue-spot {
+  width: 124px;
+  height: 124px;
+  background: #6764ff;
+  filter: blur(55px);
+  margin-left: 60px;
+  opacity: 0.5;
+  @include for-tablet {
+    position: absolute;
+    bottom: 0;
+    right: 20%;
+		z-index: 1;
+		opacity: 0.3;
+  }
 }
-
 </style>
