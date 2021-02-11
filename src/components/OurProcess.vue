@@ -96,6 +96,9 @@ export default {
 		@include for-tablet{
 			flex-wrap: wrap;
 			margin-right: 0px;
+			
+		}
+		@include for-mobile{
 			margin-top: 75px;
 		}
   }

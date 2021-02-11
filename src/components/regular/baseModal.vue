@@ -33,7 +33,7 @@
                   :placeholder="$t('formPlaceholderMobile')"
                   v-model="mobile"
                 />
-                <button class="modal-button">
+                <button class="modal-button" @click="resetValue()">
                   {{ $t("modalBtn")}}
                 </button>
               </form>
@@ -67,6 +67,11 @@ export default {
       };
       console.log(formData);
     },
+		resetValue() {
+			this.name = '',
+			this.mobile = '',
+			this.email = ''
+		}
   },
 };
 </script>

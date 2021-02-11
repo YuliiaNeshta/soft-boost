@@ -16,6 +16,7 @@
             <a
               class="header-nav__link"
               href="#"
+							@click="closeMobileMenu('#home')"
               >{{ $t("menuHome") }}</a
             >
             <a
@@ -27,10 +28,10 @@
             <a class="header-nav__link" href="#" @click="closeMobileMenu('#choose')"
               >{{ $t("menuServices") }}</a
             >
-            <a class="header-nav__link" href="#" v-scroll-to="'#process'"
+            <a class="header-nav__link" href="#" @click="closeMobileMenu('#process')"
               >{{ $t("menuHow") }}</a
             >
-            <a class="header-nav__link" href="#" v-scroll-to="'#contacts'"
+            <a class="header-nav__link" href="#" @click="closeMobileMenu('#contacts')"
               >{{ $t("menuContacts") }}</a
             >
           </nav>

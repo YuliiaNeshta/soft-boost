@@ -15,7 +15,7 @@
       />
     </div>
     <div class="form__row">
-      <button class="form__btn" type="submit">
+      <button class="form__btn" type="submit" @click="resetValue()">
         <slot>
           {{ title }}
         </slot>
@@ -54,6 +54,10 @@ export default {
       };
       console.log(formData);
     },
+		resetValue() {
+			this.name = '',
+			this.mobile = ''
+		}
   },
 };
 </script>

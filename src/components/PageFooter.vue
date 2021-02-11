@@ -69,6 +69,9 @@ export default {
     @include for-tablet {
       margin-bottom: 80px;
     }
+		@include for-min-desctop{
+			margin-bottom: 20px;
+		}
   }
 
   &__title {
