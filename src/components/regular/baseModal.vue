@@ -134,8 +134,7 @@ export default {
   transition: all 0.3s ease 0s;
   align-self: center;
   &:hover {
-    filter: drop-shadow(0px 4px 20px rgba(255, 255, 255, 0.15));
-    background-color: #fadc1b;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.2));
   }
 }
 

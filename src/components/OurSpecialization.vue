@@ -1,5 +1,5 @@
 <template>
-  <div class="special" id="about">
+  <div class="special section" id="about">
     <div class="container">
       <h2 class="special__title title">{{ $t("titleSpecial")}}</h2>
     </div>

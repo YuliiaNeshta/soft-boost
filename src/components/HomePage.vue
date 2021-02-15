@@ -1,21 +1,32 @@
 <template>
-  <div class="home-wrap" id="home">
+  <section class="home-wrap" id="home">
     <base-modal v-if="isFormPopupVisible" @closePopup="closePopup"></base-modal>
     <div class="container">
       <div class="home">
         <div class="home__logo">
-          <img src="@/assets/images/logo.svg" alt="Soft Boost" />
-					<!-- <video class="home__logo--video" src="@/assets/images/logo-video.mov"></video> -->
-          <div class="spot-yellow"></div>
+					<div class="logo-wrapper">
+						<img class="home__logo--img" src="@/assets/images/logo.svg" alt="Soft Boost" />
+						<input type="checkbox" class="switch-logo" id="switch" /><label
+            class="switch-label"
+            for="switch"
+            >Toggle</label
+          >
+					</div>
+          <div
+            class="spot-yellow"
+            data-aos="zoom-in"
+            data-aos-offset="0"
+            data-aos-duration="2000"
+          ></div>
         </div>
         <div class="home__info">
           <h1 class="home__title">
-            {{ $t("mainTitle_1")}} <br /><span>{{ $t("mainTitle_2")}}</span>
+            {{ $t("mainTitle_1") }} <br /><span>{{ $t("mainTitle_2") }}</span>
           </h1>
           <p class="home__text">
-            {{ $t("mainText")}}
+            {{ $t("mainText") }}
           </p>
-          <base-button @showModal="showModal">{{ $t("btnHome")}}</base-button>
+          <base-button @showModal="showModal">{{ $t("btnHome") }}</base-button>
         </div>
       </div>
     </div>
@@ -26,7 +37,7 @@
       <p>Management</p>
       <p>Analytics</p>
     </marquee-text>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -35,13 +46,28 @@ import BaseModal from "./regular/baseModal";
 import MarqueeText from "vue-marquee-text-component";
 
 export default {
-  components: { baseButton, BaseModal, MarqueeText },
+  components: { baseButton, BaseModal, MarqueeText},
   data() {
     return {
       isFormPopupVisible: false,
     };
   },
+  mounted() {
+    const switchItem = document.querySelector(".switch-label");
 
+    switchItem.onmouseenter = function() {
+      document.getElementById("switch").checked = true;
+    };
+
+    switchItem.onmouseleave = function() {
+      setTimeout(
+        function() {
+          document.getElementById("switch").checked = false;
+        }.bind(this),
+        1000
+      );
+    };
+  },
   methods: {
     showModal() {
       this.isFormPopupVisible = true;
@@ -49,12 +75,74 @@ export default {
     closePopup() {
       this.isFormPopupVisible = false;
     },
-    
   },
 };
 </script>
 
 <style lang="scss">
+.logo-wrapper{
+	position: relative;
+	max-width: 500px;
+	@include for-tablet{
+		max-width: 100%;
+	}
+}
+.switch-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 224px;
+  height: 117px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+	position: absolute;
+  bottom: 25px;
+  left: 117px;
+  // opacity: 0.5;
+  @include for-min-desctop {
+    width: 21vw;
+    height: 112px;
+    bottom: 33px;
+    left: 109px;
+  }
+  @media screen and (max-width: 965px) {
+    display: none;
+  }
+  &::after {
+		content: "";
+		position: absolute;
+    top: 14px;
+    left: 15px;
+    width: 87px;
+    height: 87px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.5s;
+    @include for-min-desctop {
+      top: 10px;
+    }
+  }
+}
+
+.switch-logo {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+	appearance: none;
+  &:checked + label {
+    background: $yellow;
+  }
+}
+
+.switch-logo:checked + .switch-label:after {
+  left: calc(100% - 15px);
+  transform: translateX(-100%);
+}
+
+.switch-label:active:after {
+  width: 130px;
+}
+
 .home-wrap .container {
   margin-bottom: 106px;
 }
@@ -85,6 +173,8 @@ export default {
   display: flex;
   padding-top: 226px;
   margin-bottom: 60px;
+  padding: 226px 50px 0px 50px;
+
   @include for-tablet {
     flex-direction: column;
     padding-top: 150px;
@@ -103,6 +193,12 @@ export default {
   &__logo {
     width: 50%;
     position: relative;
+    margin-right: 20px;
+		&--img{
+			// max-width: 500px;
+			height: 300px;
+			position: relative;
+		}
 
     @include for-tablet {
       img {
@@ -126,6 +222,9 @@ export default {
       flex: 1 1 50%;
       margin-left: 20px;
     }
+		@include for-mobile{
+			margin-left: 0px;
+		}
   }
 
   &__title {
@@ -158,6 +257,7 @@ export default {
   right: 11%;
   bottom: -124px;
   background-color: $yellow;
+	-webkit-filter: blur(40px);
   filter: blur(40px);
   opacity: 0.7;
   @include for-mobile {

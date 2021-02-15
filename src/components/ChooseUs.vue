@@ -6,8 +6,8 @@
           {{$t("chooseTitle")}}
         </h2>
         <img class="choose__check" src="@/assets/images/checkmark.svg" alt="" />
-        <div class="pink-spot"></div>
-        <div class="blue-spot"></div>
+        <div data-aos="zoom-in" data-aos-duration="2000" data-aos-offset="200" class="pink-spot"></div>
+        <div data-aos="zoom-out-up" data-aos-duration="4000" data-aos-offset="200" class="blue-spot"></div>
       </div>
       <div class="choose__column advantages">
         <div class="advantages__item">
@@ -126,6 +126,7 @@ export default {};
   width: 124px;
   height: 124px;
   background: #dd4df5;
+	-webkit-filter: blur(55px);
   filter: blur(55px);
   margin: 10px 0px 0px 188px;
   opacity: 0.5;
@@ -142,6 +143,7 @@ export default {};
   width: 124px;
   height: 124px;
   background: #6764ff;
+	-webkit-filter: blur(55px);
   filter: blur(55px);
   margin-left: 60px;
   opacity: 0.5;

@@ -11,52 +11,70 @@
       >
         <span></span>
       </div>
-        <div class="header__wrapper" v-show="show || !isMobile">
-          <nav class="header__nav header-nav">
-            <a
-              class="header-nav__link"
-              href="#"
-							@click="closeMobileMenu('#home')"
-              >{{ $t("menuHome") }}</a
-            >
-            <a
-              class="header-nav__link"
-              href="#"
-              v-scroll-to="{ el: '#about', offset: -50 }"
-              >{{ $t("menuAbout") }}</a
-            >
-            <a class="header-nav__link" href="#" @click="closeMobileMenu('#choose')"
-              >{{ $t("menuServices") }}</a
-            >
-            <a class="header-nav__link" href="#" @click="closeMobileMenu('#process')"
-              >{{ $t("menuHow") }}</a
-            >
-            <a class="header-nav__link" href="#" @click="closeMobileMenu('#contacts')"
-              >{{ $t("menuContacts") }}</a
-            >
-          </nav>
-          <div class="header__switcher">
-            <button
-              class="header__lang"
-              :class="{ active: isActive }"
-              @click="setLocale('ru')"
-              @click.prevent="isActive = !isActive"
-            >
-              ru
-            </button>
-            <button
-              class="header__lang"
-              :class="{ active: !isActive }"
-              @click="setLocale('en')"
-              @click.prevent="isActive = !isActive"
-            >
-              eng
-            </button>
-          </div>
-          <base-button class="header__btn" @showModal="showModal"
-            >{{ $t("btnMenu") }}</base-button
+      <div class="header__wrapper" v-show="show || !isMobile">
+        <nav class="header__nav header-nav">
+          <a
+            class="header-nav__link"
+            id="home-nav"
+            href="#"
+            @click="closeMobileMenu('#home')"
+            >{{ $t("menuHome") }}</a
           >
+          <a
+            class="header-nav__link"
+            id="about-nav"
+            href="#"
+						v-scroll-to="{
+    					el: '#about',
+							offset: -50
+						}"
+            @click="closeMobileMenu('#about')"
+            >{{ $t("menuAbout") }}</a
+          >
+          <a
+            class="header-nav__link"
+            id="choose-nav"
+            href="#"
+            @click="closeMobileMenu('#choose')"
+            >{{ $t("menuServices") }}</a
+          >
+          <a
+            class="header-nav__link"
+            id="process-nav"
+            href="#"
+            @click="closeMobileMenu('#process')"
+            >{{ $t("menuHow") }}</a
+          >
+          <a
+            class="header-nav__link"
+            id="contacts-nav"
+            href="#"
+            @click="closeMobileMenu('#contacts')"
+            >{{ $t("menuContacts") }}</a
+          >
+        </nav>
+        <div class="header__switcher">
+          <button
+            class="header__lang"
+            :class="{ activeLang: isActive }"
+            @click="setLocale('ru')"
+            @click.prevent="isActive = !isActive"
+          >
+            ru
+          </button>
+          <button
+            class="header__lang"
+            :class="{ activeLang: !isActive }"
+            @click="setLocale('en')"
+            @click.prevent="isActive = !isActive"
+          >
+            eng
+          </button>
         </div>
+        <base-button class="header__btn" @showModal="showModal">{{
+          $t("btnMenu")
+        }}</base-button>
+      </div>
     </div>
     <base-modal v-if="isFormPopupVisible" @closePopup="closePopup"></base-modal>
   </header>
@@ -65,6 +83,8 @@
 <script>
 import baseButton from "./baseButton";
 import baseModal from "./baseModal";
+import navObserver from "../../plugins/navObserver";
+import { sectionsMap } from "../../constants/sectionsMap";
 
 export default {
   components: { baseButton, baseModal },
@@ -73,9 +93,12 @@ export default {
       isFormPopupVisible: false,
       isActive: false,
       show: false,
-			mobileView: true,
-			isMobile: false
+      mobileView: true,
+      isMobile: false,
     };
+  },
+  mounted() {
+    navObserver(sectionsMap, "active", { threshold: 0.5 });
   },
   methods: {
     showModal() {
@@ -87,17 +110,21 @@ export default {
     closePopup() {
       this.isFormPopupVisible = false;
     },
-		closeMobileMenu(element) {
-			this.$scrollTo(element)
-			this.show = false;
-		}
-  },
-	created() {
+    closeMobileMenu(element) {
+      this.$scrollTo(element);
+      this.show = false;
+			if(element == "#about") {
+				console.log('yes');
+				
+    	}
+  	}
+	},
+  created() {
     this.isMobile = screen.width <= 1025;
-		window.addEventListener('resize', () => {
-			this.isMobile = screen.width <= 1025;
-		})
-	}
+    window.addEventListener("resize", () => {
+      this.isMobile = screen.width <= 1025;
+    });
+  },
 };
 </script>
 
@@ -127,7 +154,6 @@ export default {
     display: flex;
     align-items: center;
     @include for-min-desctop {
-
       position: fixed;
       top: 0;
       left: 0;
@@ -185,7 +211,7 @@ export default {
     font-size: 16px;
     line-height: 19px;
     transition: all 0.3s ease 0s;
-    &.active {
+    &.activeLang {
       background-color: $yellow;
       border-color: $yellow;
     }
